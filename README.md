@@ -15,6 +15,13 @@ virtualenv .env
 source .env/bin/activate
 ```
 
+### Run using docker-compose ###
+* Make sure docker is running on your hardware
+```
+docker-compose up -d --build
+```
+* Go to [localhost](http://localhost:8000)
+
 ### Install & Run Fast Api ###
 ```
 pip install fastapi
