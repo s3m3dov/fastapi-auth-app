@@ -1,16 +1,35 @@
-import os, time
+import json
+import time
 from typing import List
 
+import aiohttp
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException
+from environs import Env
 
-from sql_app import crud, schemas, database, models
+# Environment
+env = Env()
+env.read_env()
+
+
+from fastapi import (
+    FastAPI,
+    HTTPException,
+    Depends,
+    Request
+)
+
+from sql_app import (
+    crud,
+    schemas,
+    database,
+    models
+)
 from sql_app.database import db_state_default
+from sql_app.utils import json_prettify
 
 database.db.connect()
 database.db.create_tables([models.User, models.Item])
 database.db.close()
-
 
 app = FastAPI()
 sleep_time = 10
@@ -39,6 +58,23 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+
+
+@app.get("/my-ip")
+async def show_ip(request: Request):
+    client_host = request.client.host
+    return {"client_host": client_host}
+
+
+@app.get("/my-info")
+async def slow_route(request: Request):
+    client_ip = request.client.host
+    ipdata_key = env("IPDATA_API_KEY", default="test")  # Your Key Here
+    ipdata_url = f"https://api.ipdata.co/{client_ip}?api-key={ipdata_key}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(ipdata_url) as response:
+            json_dict = await response.json()
+    return json_prettify(json_dict)
 
 
 @app.post("/users/", response_model=schemas.User, dependencies=[Depends(get_db)])
@@ -93,4 +129,10 @@ def read_slow_users(skip: int = 0, limit: int = 100):
 
 # Run Fast API app
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=8000,
+        proxy_headers=True,
+        forwarded_allow_ips='*',
+    )
