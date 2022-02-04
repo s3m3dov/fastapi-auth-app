@@ -7,28 +7,15 @@
 
 
 ## Initial Set-up ##
-### Virtual Environment ###
-```
-virtualenv .env
-```
-```
-source .env/bin/activate
-```
-
 ### Run using docker-compose ###
 * Make sure docker is running on your hardware
 ```
 docker-compose up -d --build
 ```
+or
+```
+docker-compose -f docker-compose-local.yml up -d --build
+```
 * Go to [localhost](http://localhost:8000)
 
-### Install & Run Fast Api ###
-```
-pip install fastapi
-```
-```
-pip install "uvicorn[standard]"
-```
-```
-uvicorn main:app --reload
-```
+### Install Ngrok for testing ###
