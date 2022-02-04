@@ -1,2 +1,8 @@
 fastapi~=0.73.0
-uvicorn~=0.17.1
+uvicorn~=0.17.3
+peewee~=3.14.8
+pydantic~=1.9.0
+contextvars~=2.4.0
+pymysql~=1.0.2
+cryptography~=36.0.1
+environs~=9.5.0
