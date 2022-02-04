@@ -1,5 +1,5 @@
 import peewee
-from .database import db
+from .init_db import mysql_db
 
 
 class User(peewee.Model):
@@ -8,7 +8,7 @@ class User(peewee.Model):
     is_active = peewee.BooleanField(default=True)
 
     class Meta:
-        database = db
+        database = mysql_db
 
 
 class Item(peewee.Model):
@@ -17,4 +17,4 @@ class Item(peewee.Model):
     owner = peewee.ForeignKeyField(User, backref="items")
 
     class Meta:
-        database = db
+        database = mysql_db
