@@ -4,6 +4,8 @@ from .item import (
 )
 
 from .user import (
+    UserBase,
+    UserLogin,
     UserCreate,
     User
 )
