@@ -7,7 +7,7 @@
 
 
 ## Initial Set-up ##
-### Run using docker-compose ###
+### Using docker-compose ###
 * Make sure docker is running on your hardware
 ```
 docker-compose up -d --build
@@ -18,4 +18,15 @@ docker-compose -f docker-compose-local.yml up -d --build
 ```
 * Go to [localhost](http://localhost:8000)
 
-### Install Ngrok for testing ###
+### Issue: MySQL ###
+* In case you face with this issue `(2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")`
+* Run docker-compose build command above (I couldn't fix the root cause of the problem)
+
+
+## Testing ##
+```
+docker-compose exec web pytest -vv
+```
+```
+docker-compose exec web pytest --cov --cov-config=.coveragerc
+```

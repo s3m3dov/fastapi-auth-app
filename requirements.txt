@@ -13,3 +13,5 @@ passlib[bcrypt]~=1.7.4
 celery~=5.2.3
 sqlalchemy~=1.4.31
 mysqlclient~=2.1.0
+pytest~=6.2.5
+pytest-cov~=3.0.0
