@@ -10,7 +10,7 @@ WORKDIR /code
 
 # Install dependencies
 COPY ./requirements.txt /code/requirements.txt
-RUN pip install --upgrade -r /code/requirements.txt
+RUN pip install -r /code/requirements.txt
 
 # Copy project
 COPY . /code/

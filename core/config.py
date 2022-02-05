@@ -23,7 +23,7 @@ class FastAPISettings:
     MYSQL_ROOT_PASSWORD: str = env("MYSQL_ROOT_PASSWORD", default="mysql")
     MYSQL_HOST: str = env("MYSQL_HOST", default="db")
     MYSQL_PORT: int = env.int("MYSQL_PORT", default=3306)
-    #MYSQL_DB_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+    # MYSQL_DB_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 
     # RabbitMQ Settings
     RABBITMQ_USER: str = env("RABBITMQ_DEFAULT_USER", default="rabbit")
@@ -33,6 +33,15 @@ class FastAPISettings:
     # Celery Settings
     CELERY_BROKER_URL = f"pyamqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@rabbitmq:{RABBITMQ_PORT}//"
     CELERY_RESULT_BACKEND = f"db+mysql://root:{MYSQL_ROOT_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+
+    # Test Values
+    TEST_EMAIL = "test_user01@example.com"
+    TEST_PASSWORD = "test_user01"
+    TEST_FULLNAME = "Test User"
+    TEST_LOGIN_DATA = {
+        "email": TEST_EMAIL,
+        "password": TEST_PASSWORD
+    }
 
 
 settings = FastAPISettings()

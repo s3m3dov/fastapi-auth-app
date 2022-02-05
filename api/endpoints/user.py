@@ -16,7 +16,9 @@ def create_user(user_in: UserCreate):
     db_user = crud_user.get_by_email(email=user_in.email)
     if db_user:
         raise HTTPException(status_code=400, detail="The user with this email already exists in the system!", )
-    return crud_user.create(obj_in=user_in)
+
+    user = crud_user.create(obj_in=user_in)
+    return user
 
 
 @router.post('/login/')
@@ -44,7 +46,7 @@ def login(user_in: UserLogin, Authorize: AuthJWT = Depends()):
     Authorize.set_access_cookies(access_token)
     Authorize.set_refresh_cookies(refresh_token)
 
-    return {"msg": "Successfully logged in.", "access_token": access_token}
+    return {"msg": "Successfully logged in.", "access_token": access_token, "refresh_token": refresh_token}
 
 
 @router.get('/user/', response_model=User, dependencies=[Depends(get_db)])
@@ -75,5 +77,3 @@ def logout(Authorize: AuthJWT = Depends()):
 
     Authorize.unset_jwt_cookies()
     return {"msg": "Successfully logged out."}
-
-
