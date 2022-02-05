@@ -5,12 +5,10 @@ from fastapi.responses import JSONResponse
 from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
 
-from core import settings
 from db import models
 from db.init_db import mysql_db
-
+from core import settings, AuthJWTSettings
 from api import api_router
-from schemas.auth_jwt_config import Settings
 
 mysql_db.connect()
 mysql_db.create_tables([models.User, models.Item])
@@ -23,7 +21,7 @@ app = FastAPI(
 
 @AuthJWT.load_config
 def get_config():
-    return Settings()
+    return AuthJWTSettings()
 
 
 @app.exception_handler(AuthJWTException)
