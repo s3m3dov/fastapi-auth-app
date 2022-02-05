@@ -1,3 +1,4 @@
+from pydantic import BaseModel
 from environs import Env
 
 # Environment
@@ -5,7 +6,7 @@ env = Env()
 env.read_env()
 
 
-class Settings:
+class FastAPISettings:
     API_V1_STR: str = "/api/v1"
 
     IPDATA_API_KEY: str = env("IPDATA_API_KEY", default="test")
@@ -24,4 +25,11 @@ class Settings:
     DATABASE_PORT: int = env.int("MYSQL_PORT", default=3306)
 
 
-settings = Settings()
+settings = FastAPISettings()
+
+
+class AuthJWTSettings(BaseModel):
+    authjwt_secret_key: str = settings.AUTH_JWT_SECRET_KEY
+    authjwt_token_location: set = {"cookies"}
+    authjwt_cookie_secure: bool = False  # Only allow JWT cookies to be sent over https
+    authjwt_cookie_csrf_protect: bool = False  # Change it on production
