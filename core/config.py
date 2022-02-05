@@ -8,8 +8,8 @@ env.read_env()
 
 class FastAPISettings:
     API_V1_STR: str = "/api/v1"
-
     IPDATA_API_KEY: str = env("IPDATA_API_KEY", default="test")
+
     AUTH_JWT_SECRET_KEY: str = env("AUTH_JWT_SECRET_KEY", default="secret")
     AUTH_JWT_TOKEN_ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 1

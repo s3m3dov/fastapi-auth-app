@@ -4,18 +4,18 @@ from pydantic import BaseModel
 from .utils import PeeweeGetterDict
 
 
-class ItemBase(BaseModel):
-    title: str
-    description: Optional[str] = None
+class IPDataBase(BaseModel):
+    ip_address: str
 
 
-class ItemCreate(ItemBase):
+class IPDataCreate(IPDataBase):
     pass
 
 
-class Item(ItemBase):
-    id: int
-    user_id: int
+class IPData(IPDataCreate):
+    id: Optional[int] = None
+    ip_details: Optional[str]
+    # user_id: int
 
     class Config:
         orm_mode = True

@@ -13,10 +13,18 @@ class User(peewee.Model):
         database = mysql_db
 
 
+class IPData(peewee.Model):
+    ip_address = peewee.CharField()
+    ip_details = peewee.TextField()
+
+    class Meta:
+        database = mysql_db
+
+
 class Item(peewee.Model):
     title = peewee.CharField(index=True)
     description = peewee.CharField(index=True)
-    owner = peewee.ForeignKeyField(User, backref="items")
+    user = peewee.ForeignKeyField(User, backref="items")
 
     class Meta:
         database = mysql_db
