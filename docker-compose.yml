@@ -6,19 +6,25 @@ services:
     command: bash -c "python main.py"
     environment:
       - IPDATA_API_KEY=test
-      - AUTH_JWT_SECRET_KEY=secret
+      - AUTH_JWT_SECRET_KEY=test
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    links:
+      - "db:db"
+      - "rabbitmq:rabbitmq"
+      - "worker:worker"
     depends_on:
       - db
-      - rabbitmq
+      - worker
 
 
   worker:
     build: .
     command: bash -c "celery -A celery_worker worker -l info"
+    environment:
+      - IPDATA_API_KEY=test
     depends_on:
       - db
       - rabbitmq
@@ -34,9 +40,10 @@ services:
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=mysql
       - MYSQL_HOST=db
-      - MYSQL_PORT=3307
+      - MYSQL_PORT=3306
     ports:
-      - "3307:3306"
+      - "3306:3306"
+      - "33060:33060"
     volumes:
       - mysql_data:/var/lib/mysql/
 
@@ -59,6 +66,8 @@ services:
     restart: always
     ports:
       - "8080:80"
+    depends_on:
+      - db
     environment:
       - PMA_ARBITRARY=1
 
