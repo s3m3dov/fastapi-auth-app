@@ -2,7 +2,6 @@ from typing import List, Optional
 from pydantic import BaseModel, EmailStr
 
 from .utils import PeeweeGetterDict
-from .item import Item
 from .ipdata import IPData
 
 
@@ -26,8 +25,6 @@ class UserCreate(UserBase):
 
 class UserInDBBase(UserBase):
     id: Optional[int] = None
-    items: List[Item] = []
-    ipdata: IPData = None
 
     class Config:
         orm_mode = True

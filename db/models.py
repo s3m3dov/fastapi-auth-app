@@ -19,12 +19,3 @@ class IPData(peewee.Model):
 
     class Meta:
         database = mysql_db
-
-
-class Item(peewee.Model):
-    title = peewee.CharField(index=True)
-    description = peewee.CharField(index=True)
-    user = peewee.ForeignKeyField(User, backref="items")
-
-    class Meta:
-        database = mysql_db

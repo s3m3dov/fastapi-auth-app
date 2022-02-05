@@ -11,7 +11,7 @@ from core import settings, AuthJWTSettings
 from api import api_router
 
 mysql_db.connect()
-mysql_db.create_tables([models.User, models.IPData, models.Item])
+mysql_db.create_tables([models.User, models.IPData])
 mysql_db.close()
 
 app = FastAPI(
