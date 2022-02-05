@@ -21,10 +21,10 @@ class PeeweeConnectionState(peewee._ConnectionState):
 
 
 mysql_db = peewee.MySQLDatabase(
-    settings.DATABASE_NAME,
-    user=settings.DATABASE_USER,
-    password=settings.DATABASE_PASSWORD,
-    host=settings.DATABASE_HOST,
-    port=settings.DATABASE_PORT
+    settings.MYSQL_DATABASE,
+    user=settings.MYSQL_USER,
+    password=settings.MYSQL_PASSWORD,
+    host=settings.MYSQL_HOST,
+    port=settings.MYSQL_PORT
 )
 mysql_db._state = PeeweeConnectionState()
