@@ -23,6 +23,7 @@ class FastAPISettings:
     MYSQL_ROOT_PASSWORD: str = env("MYSQL_ROOT_PASSWORD", default="mysql")
     MYSQL_HOST: str = env("MYSQL_HOST", default="db")
     MYSQL_PORT: int = env.int("MYSQL_PORT", default=3306)
+    #MYSQL_DB_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 
     # RabbitMQ Settings
     RABBITMQ_USER: str = env("RABBITMQ_DEFAULT_USER", default="rabbit")

@@ -1,8 +1,5 @@
 from fastapi import Depends
-from db.init_db import (
-    mysql_db,
-    db_state_default,
-)
+from .init_db import mysql_db, db_state_default
 
 
 async def reset_db_state():
