@@ -5,7 +5,7 @@ from fastapi_jwt_auth import AuthJWT
 
 from core import settings
 from crud import user as crud_user
-from schemas import UserLogin, UserCreate, User
+from schemas.user import UserLogin, UserCreate, User
 from db.utils import get_db
 
 router = APIRouter()

@@ -1,5 +1,5 @@
 from db import models
-from schemas import UserCreate
+from schemas.user import UserCreate
 from core.security import verify_password, get_password_hash
 
 

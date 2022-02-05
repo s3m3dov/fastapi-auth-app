@@ -21,10 +21,3 @@ def user_ip_data_save(ip_address):
     ip_data_obj.save()
 
     return ip_data_obj
-
-
-@celery.task
-def add(x, y):
-    res = x + y
-    logger.info("Adding %s + %s, res: %s" % (x, y, res))
-    return res
