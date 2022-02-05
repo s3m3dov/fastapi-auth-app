@@ -5,7 +5,6 @@ services:
     build: .
     command: bash -c "python main.py"
     environment:
-      - IPDATA_API_KEY=test
       - AUTH_JWT_SECRET_KEY=test
     volumes:
       - .:/code

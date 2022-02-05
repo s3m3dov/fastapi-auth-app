@@ -9,6 +9,7 @@
 ## Initial Set-up ##
 ### Using docker-compose ###
 * Make sure docker is running on your hardware
+* Make sure to change `IPDATA_API_KEY` on `docker-compose.yml` file.
 ```
 docker-compose up -d --build
 ```
@@ -16,7 +17,7 @@ or
 ```
 docker-compose -f docker-compose-local.yml up -d --build
 ```
-* Go to [localhost](http://localhost:8000)
+* Go to [API Docs](http://localhost:8000/docs)
 
 ### Issue: MySQL ###
 * In case you face with this issue `(2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")`
