@@ -19,11 +19,6 @@ docker-compose -f docker-compose-local.yml up -d --build
 ```
 * Go to [API Docs](http://localhost:8000/docs)
 
-### Issue: MySQL ###
-* In case you face with this issue `(2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")`
-* Run docker-compose build command above (I couldn't fix the root cause of the problem)
-
-
 ## Testing ##
 ```
 docker-compose exec web pytest -vv
